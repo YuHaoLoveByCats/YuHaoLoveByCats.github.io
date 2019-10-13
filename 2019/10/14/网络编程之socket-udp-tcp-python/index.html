@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="MySecurity">
 <meta property="og:description" content="学习内容 了解socket基本概念 利用socket类方法获取主机、网络及目标服务的信息 UDP、TCP客户端/服务器编写 案例：python SOCKET实现RSA加密的全双工聊天程序  学习步骤构建python环境同时开发多个python应用程序（共用一个Python，不同版本的包不兼容会产生无用包），利用virtualenv创建“Python虚拟环境”（小型、独立的、隔离功能的Python环">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://vdevops.com/home/yuhao/%E5%9B%BE%E7%89%87/%E7%9F%A5%E8%AF%86%E5%9B%BE%E7%89%87/socket.png">
+<meta property="og:image" content="http://vdevops.com/2019/10/14/网络编程之socket-udp-tcp-python/socket.png">
 <meta property="og:image" content="http://vdevops.com/home/yuhao/%E5%9B%BE%E7%89%87/%E7%9F%A5%E8%AF%86%E5%9B%BE%E7%89%87/%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F%E7%AB%AF.png">
 <meta property="og:image" content="http://vdevops.com/home/yuhao/%E5%9B%BE%E7%89%87/%E6%B7%B7%E6%9D%82%E5%AE%A2%E6%88%B7%E7%AB%AF.png">
 <meta property="og:image" content="http://vdevops.com/home/yuhao/%E5%9B%BE%E7%89%87/%E6%B7%B7%E6%9D%82%E5%AE%A2%E6%88%B7%E7%AB%AF1.png">
@@ -96,11 +96,11 @@
 <meta property="og:image" content="http://vdevops.com/home/yuhao/%E5%9B%BE%E7%89%87/client.png">
 <meta property="og:image" content="http://vdevops.com/home/yuhao/%E5%9B%BE%E7%89%87/clientsend.png">
 <meta property="og:image" content="http://vdevops.com/home/yuhao/%E5%9B%BE%E7%89%87/serversend.png">
-<meta property="og:updated_time" content="2019-08-28T05:10:34.000Z">
+<meta property="og:updated_time" content="2019-10-13T18:14:46.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySecurity">
 <meta name="twitter:description" content="学习内容 了解socket基本概念 利用socket类方法获取主机、网络及目标服务的信息 UDP、TCP客户端/服务器编写 案例：python SOCKET实现RSA加密的全双工聊天程序  学习步骤构建python环境同时开发多个python应用程序（共用一个Python，不同版本的包不兼容会产生无用包），利用virtualenv创建“Python虚拟环境”（小型、独立的、隔离功能的Python环">
-<meta name="twitter:image" content="http://vdevops.com/home/yuhao/%E5%9B%BE%E7%89%87/%E7%9F%A5%E8%AF%86%E5%9B%BE%E7%89%87/socket.png">
+<meta name="twitter:image" content="http://vdevops.com/2019/10/14/网络编程之socket-udp-tcp-python/socket.png">
 
 
 
@@ -329,7 +329,7 @@
 </ul>
 <h4 id="socket概念"><a href="#socket概念" class="headerlink" title="socket概念"></a>socket概念</h4><ul>
 <li>运行在不同机器上的进程通过套接字发送报文来进行通信，套接字充当了两个进程通信的“中间人”，观察下图（OSI模型中）：</li>
-<li><img src="/home/yuhao/%E5%9B%BE%E7%89%87/%E7%9F%A5%E8%AF%86%E5%9B%BE%E7%89%87/socket.png" alt="socket"></li>
+<li><img src="./socket.png" alt="socket"></li>
 <li>套接字是个通信端点，操作系统使用整数来标识套接字，Python使用socket.socket对象表示套接字（该对象内部表示的是操作系统标识套接字的整数，可利用fileno()方法查看），调用socket.socket对象的方法请求使用套接字的系统调用是，该对象会自动使用内部维护的套接字整数标识符</li>
 <li>socket.socket对象的fileno()方法</li>
 </ul>

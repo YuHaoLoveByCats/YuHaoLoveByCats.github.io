@@ -323,7 +323,7 @@
 </ul>
 <h4 id="socket概念"><a href="#socket概念" class="headerlink" title="socket概念"></a>socket概念</h4><ul>
 <li>运行在不同机器上的进程通过套接字发送报文来进行通信，套接字充当了两个进程通信的“中间人”，观察下图（OSI模型中）：</li>
-<li><img src="/home/yuhao/%E5%9B%BE%E7%89%87/%E7%9F%A5%E8%AF%86%E5%9B%BE%E7%89%87/socket.png" alt="socket"></li>
+<li><img src="./socket.png" alt="socket"></li>
 <li>套接字是个通信端点，操作系统使用整数来标识套接字，Python使用socket.socket对象表示套接字（该对象内部表示的是操作系统标识套接字的整数，可利用fileno()方法查看），调用socket.socket对象的方法请求使用套接字的系统调用是，该对象会自动使用内部维护的套接字整数标识符</li>
 <li>socket.socket对象的fileno()方法</li>
 </ul>

@@ -79,17 +79,28 @@
 
 
 
-<meta name="description" content="Running">
+<meta name="description" content="学习内容 了解socket基本概念 利用socket类方法获取主机、网络及目标服务的信息 UDP、TCP客户端/服务器编写 案例：python SOCKET实现RSA加密的全双工聊天程序  学习步骤构建python环境同时开发多个python应用程序（共用一个Python，不同版本的包不兼容会产生无用包），利用virtualenv创建“Python虚拟环境”（小型、独立的、隔离功能的Python环">
 <meta name="keywords" content="Learning">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MySecurity">
-<meta property="og:url" content="http://vdevops.com/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python网络编程01-socket-udp-tcp-rsa加密的全双工聊天程序">
+<meta property="og:url" content="http://vdevops.com/2019/10/14/python网络编程01-socket-udp-tcp-rsa加密的全双工聊天程序/index.html">
 <meta property="og:site_name" content="MySecurity">
-<meta property="og:description" content="Running">
+<meta property="og:description" content="学习内容 了解socket基本概念 利用socket类方法获取主机、网络及目标服务的信息 UDP、TCP客户端/服务器编写 案例：python SOCKET实现RSA加密的全双工聊天程序  学习步骤构建python环境同时开发多个python应用程序（共用一个Python，不同版本的包不兼容会产生无用包），利用virtualenv创建“Python虚拟环境”（小型、独立的、隔离功能的Python环">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://vdevops.com/.com//socket.png">
+<meta property="og:image" content="http://vdevops.com/.com//yuhao/%E5%9B%BE%E7%89%87/%E7%9F%A5%E8%AF%86%E5%9B%BE%E7%89%87/%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F%E7%AB%AF.png">
+<meta property="og:image" content="http://vdevops.com/.com//yuhao/%E5%9B%BE%E7%89%87/%E6%B7%B7%E6%9D%82%E5%AE%A2%E6%88%B7%E7%AB%AF.png">
+<meta property="og:image" content="http://vdevops.com/.com//yuhao/%E5%9B%BE%E7%89%87/%E6%B7%B7%E6%9D%82%E5%AE%A2%E6%88%B7%E7%AB%AF1.png">
+<meta property="og:image" content="http://vdevops.com/.com//yuhao/%E5%9B%BE%E7%89%87/rsa%E5%8A%A0%E5%AF%86.png">
+<meta property="og:image" content="http://vdevops.com/.com//yuhao/%E5%9B%BE%E7%89%87/serverlisten.png">
+<meta property="og:image" content="http://vdevops.com/.com//yuhao/%E5%9B%BE%E7%89%87/client.png">
+<meta property="og:image" content="http://vdevops.com/.com//yuhao/%E5%9B%BE%E7%89%87/clientsend.png">
+<meta property="og:image" content="http://vdevops.com/.com//yuhao/%E5%9B%BE%E7%89%87/serversend.png">
+<meta property="og:updated_time" content="2019-10-14T05:58:54.170Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySecurity">
-<meta name="twitter:description" content="Running">
+<meta name="twitter:title" content="python网络编程01-socket-udp-tcp-rsa加密的全双工聊天程序">
+<meta name="twitter:description" content="学习内容 了解socket基本概念 利用socket类方法获取主机、网络及目标服务的信息 UDP、TCP客户端/服务器编写 案例：python SOCKET实现RSA加密的全双工聊天程序  学习步骤构建python环境同时开发多个python应用程序（共用一个Python，不同版本的包不兼容会产生无用包），利用virtualenv创建“Python虚拟环境”（小型、独立的、隔离功能的Python环">
+<meta name="twitter:image" content="http://vdevops.com/.com//socket.png">
 
 
 
@@ -119,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://vdevops.com/">
+  <link rel="canonical" href="http://vdevops.com/2019/10/14/python网络编程01-socket-udp-tcp-rsa加密的全双工聊天程序/">
 
 
 
 
 
-  <title>MySecurity</title>
+  <title>python网络编程01-socket-udp-tcp-rsa加密的全双工聊天程序 | MySecurity</title>
   
 
 
@@ -144,8 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -218,9 +228,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -250,9 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/14/python网络编程01-socket-udp-tcp-rsa加密的全双工聊天程序/" itemprop="url">python网络编程01-socket-udp-tcp-rsa加密的全双工聊天程序</a></h1>
+          <h1 class="post-title" itemprop="name headline">python网络编程01-socket-udp-tcp-rsa加密的全双工聊天程序</h1>
         
 
         <div class="post-meta">
@@ -302,9 +310,7 @@
       
 
       
-        
-          
-            <h2 id="学习内容"><a href="#学习内容" class="headerlink" title="学习内容"></a>学习内容</h2><ul>
+        <h2 id="学习内容"><a href="#学习内容" class="headerlink" title="学习内容"></a>学习内容</h2><ul>
 <li>了解socket基本概念</li>
 <li>利用socket类方法获取主机、网络及目标服务的信息</li>
 <li>UDP、TCP客户端/服务器编写</li>
@@ -547,8 +553,6 @@
 </li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -565,12 +569,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -580,10 +584,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -591,6 +596,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -611,8 +620,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -654,6 +672,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习内容"><span class="nav-number">1.</span> <span class="nav-text">学习内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习步骤"><span class="nav-number">2.</span> <span class="nav-text">学习步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构建python环境"><span class="nav-number">2.0.1.</span> <span class="nav-text">构建python环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#socket概念"><span class="nav-number">2.0.2.</span> <span class="nav-text">socket概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用socket类方法获取主机、网络及目标服务的信息"><span class="nav-number">2.0.3.</span> <span class="nav-text">利用socket类方法获取主机、网络及目标服务的信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP"><span class="nav-number">2.0.4.</span> <span class="nav-text">UDP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python-SOCKET实现RSA加密的全双工聊天程序实现"><span class="nav-number">2.0.5.</span> <span class="nav-text">python SOCKET实现RSA加密的全双工聊天程序实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -787,6 +821,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

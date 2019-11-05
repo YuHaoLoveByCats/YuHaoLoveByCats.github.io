@@ -407,6 +407,7 @@
 <li>先对参数使用<strong>stripslashes()</strong>函数过滤掉反斜杠，</li>
 <li>然后使用<strong>explode()</strong>函数将参数打散为数组,</li>
 <li>然后用<strong>is_numeric()</strong>函数对数组中的每个参数进行判断，符合条件再把数组的参数进行拼接。<br></li>
+<li>加入了Anti-CSRF token</li>
 </ul>
 <p><strong>对参数进行了严格的限制，因此不可能存在命令执行漏洞</strong></p>
 

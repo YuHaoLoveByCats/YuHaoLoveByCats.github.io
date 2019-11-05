@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://vdevops.com/2019/11/05/DVWA命令注入/dvwacmd14.png">
 <meta property="og:image" content="http://vdevops.com/2019/11/05/DVWA命令注入/dvwacmd15.png">
 <meta property="og:image" content="http://vdevops.com/2019/11/05/DVWA命令注入/dvwacmd16.png">
-<meta property="og:updated_time" content="2019-11-05T14:19:23.495Z">
+<meta property="og:updated_time" content="2019-11-05T14:24:58.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA命令注入">
 <meta name="twitter:description" content="命令注入 常用命令注入函数 在PHP中，可以实现执行外部程序或函数的命令执行函数 eval()，assert()， system()，shell_exec()，exec()，passthru()，“(与shell_exec功能相同)   函数原型  string system(string command, int &amp;amp;return_var)：command 要执行的命令：return_va">
@@ -417,6 +417,7 @@
 <li>先对参数使用<strong>stripslashes()</strong>函数过滤掉反斜杠，</li>
 <li>然后使用<strong>explode()</strong>函数将参数打散为数组,</li>
 <li>然后用<strong>is_numeric()</strong>函数对数组中的每个参数进行判断，符合条件再把数组的参数进行拼接。<br></li>
+<li>加入了Anti-CSRF token</li>
 </ul>
 <p><strong>对参数进行了严格的限制，因此不可能存在命令执行漏洞</strong></p>
 

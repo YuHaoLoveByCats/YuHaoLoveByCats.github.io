@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,7 +97,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -191,6 +191,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -219,6 +229,284 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://vdevops.com/2019/11/11/PHP变量覆盖/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YuHaoLoveByCats">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FishMouse's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/11/PHP变量覆盖/" itemprop="url">PHP变量覆盖</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-11T10:15:41+08:00">
+                2019-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖"></a>变量覆盖</h1><h2 id="基础储备"><a href="#基础储备" class="headerlink" title="基础储备"></a>基础储备</h2><ul>
+<li>定义：通常将可以用自定义的参数值替换原有变量值的情况称为变量覆盖漏洞</li>
+<li>常用导致变量覆盖漏洞的场景：  <ul>
+<li><strong>$$使用不当</strong> </li>
+<li><strong>parse_str()函数</strong>使用不当</li>
+<li><strong>import_request_variables()</strong>使用不当</li>
+<li>开启了全局变量注册等<h2 id="实例分析"><a href="#实例分析" class="headerlink" title="实例分析"></a>实例分析</h2></li>
+</ul>
+</li>
+</ul>
+<h3 id="变量覆盖问题"><a href="#变量覆盖问题" class="headerlink" title="$$变量覆盖问题"></a>$$变量覆盖问题</h3><p> <strong>$$</strong> 导致的变量覆盖问题在CTF代码审计题目中经常在<strong>foreach</strong>中出现 </p>
+<h4 id="参考示例1"><a href="#参考示例1" class="headerlink" title="参考示例1"></a>参考示例1</h4><ul>
+<li><p>示例1代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$a=<span class="string">'aaa'</span>;</span><br><span class="line">$aaa=<span class="string">'xxx'</span>;</span><br><span class="line"><span class="keyword">echo</span> $$a; <span class="comment">//$$a=$($a)=$(aaa)='xxx'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例1结果</p>
+<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cfugai02.png" alt>   </p>
+</li>
+<li><p>从漏洞方面测试下述代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=utf-8"</span>/&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$a=<span class="string">'aa'</span>;</span><br><span class="line">$aa=<span class="string">'123'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'第一次变量aa的值是'</span>.$aa.<span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">$$a=$_GET[<span class="string">'name'</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'第二次变量aa的值是'</span>.$aa.<span class="string">'&lt;br&gt;'</span>; <span class="comment">//$$a=$($a)=$aa=$_GET</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试结果</p>
+<p><img src="/2019/11/11/PHP变量覆盖/C:%5CUsers%5Cfishmouse%5Cgithub%5CYuHaoLoveByCats%5Csource_posts%5CPHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cfugai03.png" alt></p>
+<h4 id="参考示例2"><a href="#参考示例2" class="headerlink" title="参考示例2"></a>参考示例2</h4></li>
+<li><p>参考示例2代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//?name=test</span></span><br><span class="line"><span class="comment">//output:string(4) “name” string(4) “test” string(4) “test” test</span></span><br><span class="line">$name=’thinking’;</span><br><span class="line"><span class="keyword">foreach</span> ($_GET <span class="keyword">as</span> $key =&gt; $value)</span><br><span class="line">    $$key = $value;</span><br><span class="line">    var_dump($key);</span><br><span class="line">    var_dump($value);</span><br><span class="line">    var_dump($$key);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> $name;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例2结果</p>
+<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cfugai01.png" alt></p>
+</li>
+<li><p>示例2代码分析</p>
+<ul>
+<li><p>代码2，在windows系统下，phpStudy环境中，输出出现乱码；可以添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content =&quot;text/html;charset=utf-8&quot;&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">    //.....</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>使用foreach来遍历数组中的值，然后再将获取到的数组键名作为变量，数组中的键值作为变量的值。因此就产生了变量覆盖漏洞。请求?name=test 会将$name的值覆盖，变为”test” ，如示例结果所示。</li>
+</ul>
+<h4 id="CTF中-导致的变量覆盖问题的例题1："><a href="#CTF中-导致的变量覆盖问题的例题1：" class="headerlink" title="CTF中$$导致的变量覆盖问题的例题1："></a>CTF中$$导致的变量覆盖问题的例题1：</h4><ul>
+<li>题目源码：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"flag.php"</span>;</span><br><span class="line"></span><br><span class="line">$_403 = <span class="string">'Access Denied'</span>;</span><br><span class="line"></span><br><span class="line">$_200 = <span class="string">'Welcome Admin'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($_SERVER[<span class="string">"REQUEST_METHOD"</span>] != <span class="string">"POST"</span>)</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"BugsBunnyCTF is here :p…"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( !<span class="keyword">isset</span>($_POST[<span class="string">"flag"</span>]) )</span><br><span class="line">    <span class="keyword">die</span>($_403);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($_GET <span class="keyword">as</span> $key =&gt; $value)</span><br><span class="line">    $$key = $$value;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($_POST <span class="keyword">as</span> $key =&gt; $value)</span><br><span class="line">    $$key = $value;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( $_POST[<span class="string">"flag"</span>] !== $flag )</span><br><span class="line">	<span class="keyword">die</span>($_403);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"This is your flag : "</span>. $flag . <span class="string">"\n"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">die</span>($_200);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="extract-函数导致的变量覆盖问题"><a href="#extract-函数导致的变量覆盖问题" class="headerlink" title="extract()函数导致的变量覆盖问题"></a>extract()函数导致的变量覆盖问题</h3><ul>
+<li><p><strong>extract()</strong> 该函数使用数组键名作为变量名，使用数组键值作为变量值。针对数组中的每个元素，将在当前符号表中创建对应的一个变量。 </p>
+<p><strong>extract()</strong>的用法参考：<a href="http://www.runoob.com/php/func-array-extract.html" target="_blank" rel="noopener">http://www.runoob.com/php/func-array-extract.html</a></p>
+</li>
+<li><p>语法： <strong>extract(array,extract_rules,prefix)</strong> </p>
+<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cextract.png" alt></p>
+</li>
+</ul>
+<h4 id="CTF中extract-导致的变量覆盖问题的例题1"><a href="#CTF中extract-导致的变量覆盖问题的例题1" class="headerlink" title="CTF中extract()导致的变量覆盖问题的例题1"></a>CTF中extract()导致的变量覆盖问题的例题1</h4><ul>
+<li><p>源代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$flag = <span class="string">'xxx'</span>;</span><br><span class="line"></span><br><span class="line">extract($_GET);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($gift)) &#123;</span><br><span class="line">    $content = trim(file_get_contents($flag));</span><br><span class="line">    <span class="keyword">if</span> ($gift == $content) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'hctf&#123;…&#125;'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'Oh..;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125; </span></span><br><span class="line"><span class="string">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>题目分析:</strong></p>
+<ul>
+<li>题目使用了<strong>extract($_GET)</strong>接收了GET请求中的数据，并将键名和键值转换为变量名和变量的值，然后再进行两个if 的条件判断，所以可以使用GET提交参数和值，利用<strong>extract()</strong>对变量进行覆盖，从而满足各个条件 </li>
+<li><strong>file_get_contents()</strong> 函数把整个文件读入一个字符串中 </li>
+<li><strong>trim()</strong> 函数移除字符串两侧的空白字符或其他预定义字符 </li>
+</ul>
+</li>
+<li><p><strong>解题方法：</strong></p>
+<ul>
+<li>GET请求 ?flag=&amp;gift=，extract()会将$flag和$gift的值覆盖了，将变量的值设置为空或者不存在的文件就满足$gift == $content，从而得到hctf{…}</li>
+</ul>
+</li>
+<li><p><strong>测试结果</strong></p>
+<p><img src="/2019/11/11/PHP变量覆盖/C:%5CUsers%5Cfishmouse%5Cgithub%5CYuHaoLoveByCats%5Csource_posts%5CPHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cextract02.png" alt></p>
+</li>
+</ul>
+<h4 id="CTF中extract-导致的变量覆盖问题的例题2"><a href="#CTF中extract-导致的变量覆盖问题的例题2" class="headerlink" title="CTF中extract()导致的变量覆盖问题的例题2"></a><strong>CTF中extract()导致的变量覆盖问题的例题2</strong></h4><ul>
+<li><p><strong>题目源码：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">if</span> ($_SERVER[<span class="string">"REQUEST_METHOD"</span>] == <span class="string">"POST"</span>) &#123; <span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="meta">&lt;?php</span></span><br><span class="line">    </span><br><span class="line">        extract($_POST);</span><br><span class="line">                                                 </span><br><span class="line">        <span class="keyword">if</span> ($pass == $thepassword_123) &#123; <span class="meta">?&gt;</span></span><br><span class="line">			</span><br><span class="line">            &lt;div class="alert alert-success"&gt;</span><br><span class="line">            </span><br><span class="line">                &lt;code&gt;<span class="meta">&lt;?php</span> <span class="keyword">echo</span> $theflag; <span class="meta">?&gt;</span>&lt;/code&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        <span class="meta">&lt;?php</span> &#125; <span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">&lt;?php</span> &#125; <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>题目分析</strong></p>
+<ul>
+<li>题目要求使用POST提交数据（本地测试话，可以在火狐浏览器安装REST Client插件）</li>
+<li><strong>extract($_POST)</strong>会将POST的数据中的键名和键值转换为相应的变量名和变量值，利用这个覆盖<strong>$pass</strong>和<strong>$thepassword_123</strong>变量的值，从而满足<strong>$pass == $thepassword_123</strong>这个条件。 </li>
+</ul>
+</li>
+<li><p><strong>解题方法：</strong> </p>
+<p>使用POST请求提交<strong>pass=&amp;thepassword_123=</strong>, 然后<strong>extract()</strong>会将接收到的数据将<strong>$pass</strong>和<strong>$thepassword_123</strong>变量的值覆盖为空，便满足条件了。</p>
+<h3 id="parse-str函数导致的变量覆盖问题"><a href="#parse-str函数导致的变量覆盖问题" class="headerlink" title="parse_str函数导致的变量覆盖问题"></a><strong>parse_str函数导致的变量覆盖问题</strong></h3></li>
+<li><p>parse_str() 函数用于把查询字符串解析到变量中，如果没有array 参数，则由该函数设置的变量将覆盖已存在的同名变量。</p>
+</li>
+<li><p>语法：parse_str(string,array)  </p>
+<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cparse_str.png" alt></p>
+</li>
+</ul>
+<h2 id="parse-str-导致的变量覆盖问题"><a href="#parse-str-导致的变量覆盖问题" class="headerlink" title="parse_str()导致的变量覆盖问题"></a>parse_str()导致的变量覆盖问题</h2><h4 id="CTF中parse-str-导致的变量覆盖问题的例题1"><a href="#CTF中parse-str-导致的变量覆盖问题的例题1" class="headerlink" title="CTF中parse_str()导致的变量覆盖问题的例题1:"></a><strong>CTF中parse_str()导致的变量覆盖问题的例题1:</strong></h4><ul>
+<li><p><strong>题目源码：</strong> </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content =<span class="string">"text/html;charset=utf-8"</span>&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">empty</span>($_GET[<span class="string">'id'</span>])) &#123;</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">die</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">include</span> (<span class="string">'flag.php'</span>);</span><br><span class="line">    $a = <span class="string">"www.OPENCTF.com"</span>;</span><br><span class="line">    $id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">    @parse_str($id);</span><br><span class="line">    <span class="keyword">if</span> ($a[<span class="number">0</span>] != <span class="string">'QNKCDZO'</span> &amp;&amp; md5($a[<span class="number">0</span>]) == md5(<span class="string">'QNKCDZO'</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $flag;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">exit</span>(<span class="string">'其实很简单其实并不难！'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>题目分析：</strong>  </p>
+<ul>
+<li><p>首先要求使用GET提交id参数，</p>
+</li>
+<li><p>然后<strong>parse_str($id)对id</strong>参数的数据进行处理，</p>
+</li>
+<li><p>再使用判断<strong>$a[0] != ‘QNKCDZO’ &amp;&amp; md5($a[0]) == md5(‘QNKCDZO’)</strong>的结果是否为真，为真就返回flag，</p>
+</li>
+<li><p><strong>md5(‘QNKCDZO’)</strong>的结果是<strong>0e830400451993494058024219903391</strong></p>
+</li>
+<li><p>由于此次要满足<strong>$a[0] != ‘QNKCDZO’ &amp;&amp; md5($a[0]) == md5(‘QNKCDZO’)</strong></p>
+</li>
+<li><p>所以要利用php弱语言特性，0e123会被当做科学计数法，0 * 10 x 123。所以需要找到一个字符串md5后的结果是0e开头后面都是数字的，如，240610708，s878926199a </p>
+</li>
+<li><p>PHP处理0e开头md5哈希字符串缺陷/bug 参考：<a href="http://www.cnblogs.com/Primzahl/p/6018158.html" target="_blank" rel="noopener">http://www.cnblogs.com/Primzahl/p/6018158.html</a> </p>
+</li>
+</ul>
+</li>
+<li><p><strong>解题方法：</strong>  </p>
+<ul>
+<li>使用GET请求id=a[0]=240610708，这样会将a[0]的值覆盖为<strong>240610708</strong>，</li>
+<li>然后经过md5后得到<strong>0e462097431906509019562988736854与md5(‘QNKCDZO’)</strong>的结果<strong>0e830400451993494058024219903391</strong>比较都是0 所以相等，满足条件，得打flag。 </li>
+</ul>
+</li>
+<li><p>md5哈希后，有0e开头的参考如图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提示：md5加密后0e开头、PHP弱类型比较、字符串在PHP中0e开头的科学计数法</span></span><br><span class="line">s_arr =[<span class="string">"QNKCDZO"</span>,<span class="string">"240610708"</span>,<span class="string">"s878926199a"</span>,<span class="string">"s155964671a"</span>,<span class="string">"s214587387a"</span>,<span class="string">"CbDLytmyGm2xQyaLNhWn"</span>,<span class="string">"770hQgrBOjrcqftrlaZk"</span>,<span class="string">"7r4lGXCH2Ksu2JNT3BYM"</span>]</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> s_arr:</span><br><span class="line">    print(md5(s.encode()).hexdigest())</span><br><span class="line">    print(<span class="string">"\n"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cmd5.png" alt></p>
+</li>
+<li><p><strong>最终PAYLOAD：</strong> </p>
+<p><strong>GET DATA:</strong> </p>
+<p><strong>?id=a[0]=s878926199a</strong> </p>
+<p><strong>or</strong> </p>
+<p><strong>?id=a[0]=240610708</strong></p>
+</li>
+<li><p><strong>测试结果：</strong></p>
+<ul>
+<li><p>flag.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$flag =<span class="string">"flag is hello nihao"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>?id=a[0]=s878926199a</strong>结果</p>
+<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cflag.png" alt></p>
+</li>
+</ul>
+<h2 id="变量覆盖漏洞防范"><a href="#变量覆盖漏洞防范" class="headerlink" title="变量覆盖漏洞防范"></a>变量覆盖漏洞防范</h2><ul>
+<li><p>使用原始变量数组</p>
+<p>建议直接用原始的变量数组，如$_POST,$_GET等数组变量进行操作，避免使用变量注册</p>
+</li>
+<li><p>验证变量是否存在</p>
+<p>注册变量前先判断变量是否存在，使用extract()函数则可以配置第二个参数为EXTR_SKIP,自行申明的变量一定要初始化。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1323,7 +1611,7 @@ Part Name: Spindle</code></pre>  <figure class="highlight plain"><table><tr><td 
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1391,7 +1679,7 @@ Part Name: Spindle</code></pre>  <figure class="highlight plain"><table><tr><td 
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -1490,6 +1778,13 @@ Part Name: Spindle</code></pre>  <figure class="highlight plain"><table><tr><td 
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
 

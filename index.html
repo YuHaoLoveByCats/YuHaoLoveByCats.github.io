@@ -330,19 +330,19 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$a=<span class="string">'aaa'</span>;</span><br><span class="line">$aaa=<span class="string">'xxx'</span>;</span><br><span class="line"><span class="keyword">echo</span> $$a; <span class="comment">//$$a=$($a)=$(aaa)='xxx'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>示例1结果</p>
-<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cfugai02.png" alt>   </p>
+<p><img src="/2019/11/11/PHP变量覆盖/fugai02.png" alt>   </p>
 </li>
 <li><p>从漏洞方面测试下述代码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=utf-8"</span>/&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$a=<span class="string">'aa'</span>;</span><br><span class="line">$aa=<span class="string">'123'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'第一次变量aa的值是'</span>.$aa.<span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">$$a=$_GET[<span class="string">'name'</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'第二次变量aa的值是'</span>.$aa.<span class="string">'&lt;br&gt;'</span>; <span class="comment">//$$a=$($a)=$aa=$_GET</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>测试结果</p>
-<p><img src="/2019/11/11/PHP变量覆盖/C:%5CUsers%5Cfishmouse%5Cgithub%5CYuHaoLoveByCats%5Csource_posts%5CPHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cfugai03.png" alt></p>
+<p><img src="/2019/11/11/PHP变量覆盖/fugai03.png" alt></p>
 <h4 id="参考示例2"><a href="#参考示例2" class="headerlink" title="参考示例2"></a>参考示例2</h4></li>
 <li><p>参考示例2代码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//?name=test</span></span><br><span class="line"><span class="comment">//output:string(4) “name” string(4) “test” string(4) “test” test</span></span><br><span class="line">$name=’thinking’;</span><br><span class="line"><span class="keyword">foreach</span> ($_GET <span class="keyword">as</span> $key =&gt; $value)</span><br><span class="line">    $$key = $value;</span><br><span class="line">    var_dump($key);</span><br><span class="line">    var_dump($value);</span><br><span class="line">    var_dump($$key);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> $name;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>示例2结果</p>
-<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cfugai01.png" alt></p>
+<p><img src="/2019/11/11/PHP变量覆盖/fugai01.png" alt></p>
 </li>
 <li><p>示例2代码分析</p>
 <ul>
@@ -368,7 +368,7 @@
 <p><strong>extract()</strong>的用法参考：<a href="http://www.runoob.com/php/func-array-extract.html" target="_blank" rel="noopener">http://www.runoob.com/php/func-array-extract.html</a></p>
 </li>
 <li><p>语法： <strong>extract(array,extract_rules,prefix)</strong> </p>
-<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cextract.png" alt></p>
+<p><img src="/2019/11/11/PHP变量覆盖/extract.png" alt></p>
 </li>
 </ul>
 <h4 id="CTF中extract-导致的变量覆盖问题的例题1"><a href="#CTF中extract-导致的变量覆盖问题的例题1" class="headerlink" title="CTF中extract()导致的变量覆盖问题的例题1"></a>CTF中extract()导致的变量覆盖问题的例题1</h4><ul>
@@ -388,7 +388,7 @@
 </ul>
 </li>
 <li><p><strong>测试结果</strong></p>
-<p><img src="/2019/11/11/PHP变量覆盖/C:%5CUsers%5Cfishmouse%5Cgithub%5CYuHaoLoveByCats%5Csource_posts%5CPHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cextract02.png" alt></p>
+<p><img src="/2019/11/11/PHP变量覆盖/extract02.png" alt></p>
 </li>
 </ul>
 <h4 id="CTF中extract-导致的变量覆盖问题的例题2"><a href="#CTF中extract-导致的变量覆盖问题的例题2" class="headerlink" title="CTF中extract()导致的变量覆盖问题的例题2"></a><strong>CTF中extract()导致的变量覆盖问题的例题2</strong></h4><ul>
@@ -407,7 +407,7 @@
 <li><p>parse_str() 函数用于把查询字符串解析到变量中，如果没有array 参数，则由该函数设置的变量将覆盖已存在的同名变量。</p>
 </li>
 <li><p>语法：parse_str(string,array)  </p>
-<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cparse_str.png" alt></p>
+<p><img src="/2019/11/11/PHP变量覆盖/parse_str.png" alt></p>
 </li>
 </ul>
 <h2 id="parse-str-导致的变量覆盖问题"><a href="#parse-str-导致的变量覆盖问题" class="headerlink" title="parse_str()导致的变量覆盖问题"></a>parse_str()导致的变量覆盖问题</h2><h4 id="CTF中parse-str-导致的变量覆盖问题的例题1"><a href="#CTF中parse-str-导致的变量覆盖问题的例题1" class="headerlink" title="CTF中parse_str()导致的变量覆盖问题的例题1:"></a><strong>CTF中parse_str()导致的变量覆盖问题的例题1:</strong></h4><ul>
@@ -462,7 +462,7 @@
 </ul>
 <ul>
 <li><p><strong>?id=a[0]=s878926199a</strong>结果</p>
-<p><img src="/2019/11/11/PHP变量覆盖/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%5Cflag.png" alt></p>
+<p><img src="/2019/11/11/PHP变量覆盖/flag.png" alt></p>
 </li>
 </ul>
 <h2 id="变量覆盖漏洞防范"><a href="#变量覆盖漏洞防范" class="headerlink" title="变量覆盖漏洞防范"></a>变量覆盖漏洞防范</h2><ul>
